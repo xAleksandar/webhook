@@ -77,12 +77,12 @@ app.post("/webhook", (req, res) => {
   }
 
   const branch = payload.ref;
-  if (branch !== "refs/heads/master") {
-    console.log(`Push to ${branch} ignored (only master triggers deploy)`);
+  if (branch !== "refs/heads/main") {
+    console.log(`Push to ${branch} ignored (only main triggers deploy)`);
     return res.status(200).send("Ignored");
   }
 
-  console.log("🚀 Push to master detected, running deploy...");
+  console.log("🚀 Push to main detected, running deploy...");
   console.log("📍 process.cwd():", process.cwd());
   console.log("📍 __dirname:", __dirname);
 
