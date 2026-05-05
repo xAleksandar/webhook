@@ -7,6 +7,7 @@ const app = express();
 
 const SECRET = process.env.WEBHOOK_SECRET;
 const DEPLOY_SCRIPT = process.env.DEPLOY_SCRIPT;
+const APP_URL = process.env.APP_URL;
 
 // === Capture raw body for signature verification ===
 app.use(
@@ -88,7 +89,7 @@ app.post("/webhook", (req, res) => {
 
 
   exec(`bash ${DEPLOY_SCRIPT}`, {
-    cwd: "/home/ubuntu/money_printer",
+    cwd: APP_URL,
   }, (error, stdout, stderr) => {
     if (error) {
       console.error("❌ Deployment failed:");
